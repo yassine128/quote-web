@@ -25,7 +25,7 @@ body {
 }
 
 .topnav a:hover {
-  color: black;
+  color: #b4a007;
 }
 
 .active {

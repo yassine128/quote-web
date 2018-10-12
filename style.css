@@ -20,7 +20,11 @@ input:focus
   border: none;
   outline: none;
 }
-
+button:focus
+{
+  border: none;
+  outline: none;
+}
 .form-field input,
 .form-field select {
   border: 1px solid #000000;
@@ -34,7 +38,7 @@ button {
   color: white;
   cursor: pointer;
   padding: 10px;
-  transition: background 0.3s ease;
+  transition: background 0.8s ease;
 }
 
 button:hover {
@@ -63,10 +67,14 @@ left: 700px;
 font-size: 18px
 }
 .citation{
+  color: white;
   position: absolute;
   top: 180px;
   left: 150px;
   font-size: 18px;
+}
+.nomdeconn
+{
   color: white;
 }
 body{

@@ -37,12 +37,12 @@ if(isset($_POST['formconnexion']))
    <head>
       <title>Connexion</title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style2.css">
+      <link rel="stylesheet" href="style.css">
    </head>
    <body>
       <div align="center"><?php include('navbar_acceuil.php') ?>
         <div class="conn">
-         <h2>Connexion</h2>
+         <div class="nomdeconn"><h2>Connexion</h2></div>
          <form method="POST" action="">
             <td align="right">
             <div class="form-field"><input type="email" name="mailconnect" placeholder="Mail"/></div>
