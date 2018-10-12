@@ -1,58 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {margin: 0;}
-/* Style the search box inside the navigation bar */
-.topnav input[type=text] {
-    float: middle;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-}
-ul.topnav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-ul.topnav li {float: left;}
+.topnav {
+  overflow: hidden;
+  background-color: #2a2929;
+}
 
-ul.topnav li a {
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  color: black;
+}
+
+.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
     display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  }
 }
 
-ul.topnav li a:hover:not(.active) {background-color: #111;}
-
-ul.topnav li a.active {background-color: #4CAF50;}
-
-ul.topnav li.right {float: right;}
-
-@media screen and (max-width: 600px){
-    ul.topnav li.right,
-    ul.topnav li {float: none;}
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
 }
 </style>
 </head>
 <body>
 
-<ul class="topnav">
-  <li><a class="active" href="timeline.php">Home</a></li>
-  <li><a href="editionprofil.php">parametre</a></li>
-  <li><a href="retour_profile.php"><?php echo $_SESSION['pseudo']; ?></a></li>
-  <li><?php include('searchbar.php'); ?></li>
-  <li class="right"><a href="deconnexion.php">Log out</a></li>
-</ul>
+<div class="topnav" id="myTopnav">
+  <a href="timeline.php"/><li><img src="https://cdn-assets.minds.com/front/dist/assets/logos/bulb.svg"  width="40px" height="40px"/></a></li>
+  <a href="editionprofil.php">parametre</a>
+  <a href="retour_profile.php"><?php echo $_SESSION['pseudo']; ?></a>
+  <a href="deconnexion.php">Log out</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
 
 </body>
 </html>

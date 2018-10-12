@@ -63,11 +63,11 @@ left: 700px;
 font-size: 18px
 }
 .citation{
+  color: white;
   position: absolute;
   top: 180px;
   left: 150px;
   font-size: 18px;
-  color: white;
 }
 body{
   background-color: #333;

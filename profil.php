@@ -13,6 +13,7 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
    <head>
       <title>Profi de <?php echo $userinfo['pseudo']; ?></title>
       <meta charset="utf-8">
+      <link rel="stylesheet" href="style2.css">
    </head>
    <body>
      <?php include('navbar.php'); ?>
