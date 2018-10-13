@@ -7,7 +7,8 @@ if(isset($_POST['forminscription'])) {
    $mail = htmlspecialchars($_POST['mail']);
    $mdp = sha1($_POST['mdp']);
    $mdp2 = sha1($_POST['mdp2']);
-   if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2'])) {
+   $bio = htmlspecialchars($_POST['bio']);
+   if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) AND !empty($_POST['bio'])) {
       $pseudolength = strlen($pseudo);
       if($pseudolength <= 255) {
          if($mail == $mail) {
@@ -17,8 +18,8 @@ if(isset($_POST['forminscription'])) {
                $mailexist = $reqmail->rowCount();
                if($mailexist == 0) {
                   if($mdp == $mdp2) {
-                     $insertmbr = $bdd->prepare("INSERT INTO membre(pseudo, mail, motdepasse) VALUES(?, ?, ?)");
-                     $insertmbr->execute(array($pseudo, $mail, $mdp));
+                     $insertmbr = $bdd->prepare("INSERT INTO membre(pseudo, mail, motdepasse, biographie) VALUES(?, ?, ?, ?)");
+                     $insertmbr->execute(array($pseudo, $mail, $mdp, $bio));
                      $erreur = "Votre compte a bien été créé ! <a href=\"connexion.php\">Me connecter</a>";
                   } else {
                      $erreur = "Vos mots de passes ne correspondent pas !";
@@ -56,11 +57,12 @@ if(isset($_POST['forminscription'])) {
                      <div class="form-field"><input type="email" placeholder="Votre mail" id="mail" name="mail" value="<?php if(isset($mail)) { echo $mail; } ?>" /></div>
                      <div class="form-field"><input type="password" placeholder="Votre mot de passe" id="mdp" name="mdp" /></div>
                      <div class="form-field"><input type="password" placeholder="Confirmez votre mdp" id="mdp2" name="mdp2" /></div>
+                     <div class="form-field"><input type="hidden" placeholder="Votre bio!" id="bio" name="bio" value="my bio!" /></div>
                      <div class="form-field"><button type="submit" name="forminscription"> Log in</button></div>
          </form>
          <?php
          if(isset($erreur)) {
-            echo '<font color="red">'.$erreur."</font>";
+            echo '<font color="white">'.$erreur."</font>";
          }
          ?>
       </div>
