@@ -55,6 +55,7 @@ if(isset($_SESSION['id']))
    <head>
       <title>Profi de <?php echo $userinfo['pseudo']; ?></title>
       <meta charset="utf-8">
+      <link rel="stylesheet" href="style.css">
    </head>
    <body>
      <?php include('navbar.php'); ?>

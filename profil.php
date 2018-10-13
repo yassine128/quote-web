@@ -13,7 +13,7 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
    <head>
       <title>Profi de <?php echo $userinfo['pseudo']; ?></title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style2.css">
+      <link rel="stylesheet" href="style.css">
    </head>
    <body>
      <?php include('navbar.php'); ?>
@@ -24,9 +24,8 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
          <br />
          Mail = <?php echo $userinfo['mail']; ?>
          <br />
-         Biographie: <br /> <?php echo $userinfo['biographie'] ?>
-
-
+         Biographie: <br /> <?php echo $userinfo['biographie'] ?><br />
+         <a href="add_post.php" class="addpost">+</a>
    </body>
 </html>
 <?php

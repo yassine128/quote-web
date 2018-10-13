@@ -77,6 +77,44 @@ font-size: 18px
 {
   color: white;
 }
+.addpost
+{
+  position: absolute;
+  bottom: 40px;
+  right: 55px;
+  font-size: 18px;
+  display:block;
+width:50px;
+height:50px;
+line-height:50px;
+border: 2px solid #fffefe;
+border-radius: 50%;
+color:#fffefe;
+text-align:center;
+text-decoration:none;
+background: #010101;
+box-shadow: 0 0 3px gray;
+font-size:20px;
+font-weight:bold;
+transition: background 0.9s ease;
+}
+.addpost:hover
+{
+  background: white;
+  border: 2px solid black;
+  color: black;
+  transition: background 0.9s ease;
+}
+.citationpost
+{
+ font-family: 'Pacifico', cursive;
+}
+.citationname
+{
+ font-family: 'Pacifico', cursive;
+ position: absolute;
+ left: 650px;
+}
 body{
   background-color: #333;
 }
