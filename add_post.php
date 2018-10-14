@@ -6,7 +6,7 @@
    <head>
       <title>Timeline</title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style1.css">
    </head>
    <body>
      <?php include('navbar.php'); ?>
@@ -24,7 +24,7 @@
             } ?>" readonly="readonly"/><br />
            <textarea rows="7" cols="55" name="timeline" placeholder="Hey <?php echo $_COOKIE['pseudo_timeline'];?> what's in your mind?"></textarea>
            <br /><br />
-           <input type="submit" value="Publiez"/>
+           <div class="form-field"><button type="submit" name="formconnexion">Publier</button></div>
          </form>
        </div>
      </div>

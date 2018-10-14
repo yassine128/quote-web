@@ -8,7 +8,11 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
 .topnav {
   overflow: hidden;
   background-color: #2a2929;
@@ -63,7 +67,7 @@ body {
 <body>
 
 <div class="topnav" id="myTopnav">
-  <a href="timeline.php"/><li><img src="https://cdn-assets.minds.com/front/dist/assets/logos/bulb.svg"  width="40px" height="40px"/></a></li>
+  <a href="timeline.php"/><li><img src="https://images.vexels.com/media/users/3/137401/isolated/preview/00300d00be87848b87d820f2664bc7eb-quora-icon-logo-by-vexels.png"  width="40px" height="40px"/></a></li>
   <a href="editionprofil.php">parametre</a>
   <a href="retour_profile.php"><?php echo $_SESSION['pseudo']; ?></a>
   <a href="deconnexion.php">Log out</a>
@@ -82,6 +86,19 @@ function myFunction() {
     }
 }
 </script>
+<script>
+window.onscroll = function() {myFunction()};
 
+var header = document.getElementById("myTopnav");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
 </body>
 </html>
