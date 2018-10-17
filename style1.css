@@ -108,6 +108,7 @@ transition: background 0.9s ease;
 .citationpost
 {
  font-family: 'Pacifico', cursive;
+ width:100%;
 }
 .citationname
 {
@@ -154,6 +155,33 @@ textarea {
 textarea:focus {
     background: none repeat scroll 0 0 #FFFFFF;
     outline-width: 0;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+h2
+{
+  color: white;
 }
 body{
   background-color: #333;

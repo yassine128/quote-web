@@ -12,7 +12,7 @@
      <?php include('navbar.php'); ?>
       <div align="center">
          <div align="left">
-         <form method="post" action="timeline_post.php">
+         <form method="post" action="timeline_post.php" enctype="multipart/form-data">
            <div align="center">
            <input type="hidden" name="pseudo_timeline" value="
            <?php if (isset($_COOKIE['pseudo_timeline']))
@@ -24,8 +24,9 @@
             } ?>" readonly="readonly"/><br />
            <textarea rows="7" cols="55" name="timeline" placeholder="Hey <?php echo $_COOKIE['pseudo_timeline'];?> what's in your mind?"></textarea>
            <br /><br />
+           <input type="file" name="miniature" />
            <div class="form-field"><button type="submit" name="formconnexion">Publier</button></div>
-         </form>
+          </form>
        </div>
      </div>
    </body>

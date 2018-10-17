@@ -45,7 +45,7 @@ if(isset($_POST['forminscription'])) {
    <head>
       <title>Inscription</title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style1.css">
    </head>
    <body>
       <div align="center">

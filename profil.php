@@ -13,15 +13,22 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
    <head>
       <title>Profi de <?php echo $userinfo['pseudo']; ?></title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style1.css">
    </head>
    <body>
-     <?php include('navbar.php'); ?>
+     <?php include('s_navbar.php'); ?>
       <div align="center">
          <h2>Profil de <?php echo $userinfo['pseudo']; ?></h2>
          <br /><br />
-         Pseudo = <?php echo $userinfo['pseudo']; ?>
-         <br />
+         <?php
+         if(!empty($userinfo['avatar']))
+         {
+         ?>
+         <img src="membres/avatars/<?php echo $userinfo['avatar'];?>" style="width: 200px; border-radius: 50%;">
+         <?php
+         }
+         ?>
+         </br>
          Mail = <?php echo $userinfo['mail']; ?>
          <br />
          Biographie: <br /> <?php echo $userinfo['biographie'] ?><br />

@@ -46,6 +46,31 @@ if(isset($_SESSION['id']))
 
     }
   }
+if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+   $tailleMax = 2097152;
+   $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+   if($_FILES['avatar']['size'] <= $tailleMax) {
+      $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+      if(in_array($extensionUpload, $extensionsValides)) {
+         $chemin = "membres/avatars/".$_SESSION['id'].".".$extensionUpload;
+         $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+         if($resultat) {
+            $updateavatar = $bdd->prepare('UPDATE membre SET avatar = :avatar WHERE id = :id');
+            $updateavatar->execute(array(
+               'avatar' => $_SESSION['id'].".".$extensionUpload,
+               'id' => $_SESSION['id']
+               ));
+            header('Location: profil.php?id='.$_SESSION['id']);
+         } else {
+            $msg = "Erreur durant l'importation de votre photo de profil";
+         }
+      } else {
+         $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+      }
+   } else {
+      $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+   }
+}
   if(isset($_POST['newpseudo']) AND $_POST['newpseudo'] == $user['pseudo'])
   {
     header('location: profil.php?id='.$_SESSION['id']);
@@ -55,22 +80,21 @@ if(isset($_SESSION['id']))
    <head>
       <title>Profi de <?php echo $userinfo['pseudo']; ?></title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style1.css">
    </head>
    <body>
      <?php include('navbar.php'); ?>
       <div align="center">
          <h2>Edition de mon profil</h2>
-         <div align="left">
-         <form method="post" action="">
-           <label>Pseudo:</label><input type="text" name="newpseudo" placeholder="Pseudo" value="<?php echo $user['pseudo']; ?>"/><br /><br />
-           <label>Mail:</label><input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['mail']; ?>"/><br /><br />
-           <label>Mot de passe:</label><input type="password" name="newmdp1" placeholder="Mot de passe"/><br /><br />
-           <label>Confirmation mot de passe:</label><input type="password" name="newmdp2" placeholder="Confirmation du Mdp"/><br /><br />
-           <label>Biographie :</label><br /><textarea rows="7" cols="40" name="biographie">
-             150 mots maximum !
-           </textarea><br /> <br />
-           <input type="submit" value="Mettre à jour mon profil !"/>
+         <div align="center">
+         <form method="post" action="" enctype="multipart/form-data">
+           <div class="form-field"><input type="text" name="newpseudo" placeholder="Pseudo" value="<?php echo $user['pseudo']; ?>"/><br /><br /></div>
+           <div class="form-field"><input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['mail']; ?>"/><br /><br /></div>
+           <div class="form-field"><input type="password" name="newmdp1" placeholder="Mot de passe"/><br /><br /></div>
+           <div class="form-field"><input type="password" name="newmdp2" placeholder="Confirmation du Mdp"/><br /><br /></div>
+           <br /><textarea rows="7" cols="40" name="biographie"> 150 mots maximum !</textarea><br /> <br />
+           <div class="form-field"><input type="file" name="avatar" /><br /><br /></div>
+           <div class="form-field"><button type="submit"/>Enregister</div>
          </form>
          <?php
          if(isset($msg))
@@ -86,6 +110,6 @@ if(isset($_SESSION['id']))
 }
 else
 {
-  header('location: deco_connexion.php');
+  header('location: editionprofil.php');
 }
 ?>
