@@ -1,13 +1,11 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=espace_membre', 'root', '');
-
 if(isset($_SESSION['id']))
 {
   $requser = $bdd->prepare('SELECT * From membre WHERE id = ?');
   $requser->execute(array($_SESSION['id']));
   $user = $requser->fetch();
-
   if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['pseudo'])
   {
     $newpseudo = htmlspecialchars($_POST['newpseudo']);
@@ -33,7 +31,6 @@ if(isset($_SESSION['id']))
   {
     $mdp1 = sha1($_POST['newmdp1']);
     $mdp2 = sha1($_POST['newmdp2']);
-
     if($mdp1 == $mdp2)
     {
       $insertmdp = $bdd->prepare('UPDATE membre SET motdepasse = ? WHERE id = ?');
@@ -43,21 +40,45 @@ if(isset($_SESSION['id']))
     else
     {
       $msg = "Vos deux mot de passes ne correspondent pas !";
-
     }
   }
-if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+  if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+     $tailleMax = 2097152;
+     $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+     if($_FILES['avatar']['size'] <= $tailleMax) {
+        $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+        if(in_array($extensionUpload, $extensionsValides)) {
+           $chemin = "membres/avatars/".$_SESSION['id'].".".$extensionUpload;
+           $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+           if($resultat) {
+              $updateavatar = $bdd->prepare('UPDATE membre SET avatar = :avatar WHERE id = :id');
+              $updateavatar->execute(array(
+                 'avatar' => $_SESSION['id'].".".$extensionUpload,
+                 'id' => $_SESSION['id']
+                 ));
+              header('Location: profil.php?id='.$_SESSION['id']);
+           } else {
+              $msg = "Erreur durant l'importation de votre photo de profil";
+           }
+        } else {
+           $msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+        }
+     } else {
+        $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
+     }
+  }
+if(isset($_FILES['banniere']) AND !empty($_FILES['banniere']['name'])) {
    $tailleMax = 2097152;
    $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
-   if($_FILES['avatar']['size'] <= $tailleMax) {
-      $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+   if($_FILES['banniere']['size'] <= $tailleMax) {
+      $extensionUpload = strtolower(substr(strrchr($_FILES['banniere']['name'], '.'), 1));
       if(in_array($extensionUpload, $extensionsValides)) {
-         $chemin = "membres/avatars/".$_SESSION['id'].".".$extensionUpload;
-         $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+         $chemin = "membres/bannieres/".$_SESSION['id'].".".$extensionUpload;
+         $resultat = move_uploaded_file($_FILES['banniere']['tmp_name'], $chemin);
          if($resultat) {
-            $updateavatar = $bdd->prepare('UPDATE membre SET avatar = :avatar WHERE id = :id');
+            $updateavatar = $bdd->prepare('UPDATE membre SET banniere = :banniere WHERE id = :id');
             $updateavatar->execute(array(
-               'avatar' => $_SESSION['id'].".".$extensionUpload,
+               'banniere' => $_SESSION['id'].".".$extensionUpload,
                'id' => $_SESSION['id']
                ));
             header('Location: profil.php?id='.$_SESSION['id']);
@@ -80,7 +101,7 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
    <head>
       <title>Profi de <?php echo $userinfo['pseudo']; ?></title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style1.css">
+      <link rel="stylesheet" href="style3.css">
    </head>
    <body>
      <?php include('navbar.php'); ?>
@@ -94,6 +115,7 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
            <div class="form-field"><input type="password" name="newmdp2" placeholder="Confirmation du Mdp"/><br /><br /></div>
            <br /><textarea rows="7" cols="40" name="biographie"> 150 mots maximum !</textarea><br /> <br />
            <div class="form-field"><input type="file" name="avatar" /><br /><br /></div>
+           <div class="form-field"><input type="file" name="banniere" /><br /><br /></div>
            <div class="form-field"><button type="submit"/>Enregister</div>
          </form>
          <?php

@@ -15,6 +15,10 @@
   margin-bottom: 7px;
   width: 300px;
 }
+.filtring
+{
+  width: 100%;
+}
 input:focus
 {
   border: none;
@@ -80,10 +84,9 @@ font-size: 18px
 .addpost
 {
   position: absolute;
-  bottom: 40px;
-  right: 55px;
+  bottom: 200px;
+  right: 980px;
   font-size: 18px;
-  display:block;
 width:50px;
 height:50px;
 line-height:50px;
@@ -107,14 +110,14 @@ transition: background 0.9s ease;
 }
 .citationpost
 {
- font-family: 'Pacifico', cursive;
+ font-family: fantasy;
  width:100%;
 }
 .citationname
 {
- font-family: 'Pacifico', cursive;
+ font-family: fantasy;
  position: inherit;
- left: 650px;
+ left: 700px;
 }
 div.polaroid {
   width: 40%;
@@ -179,10 +182,33 @@ textarea:focus {
   top: 0;
   opacity: 0;
 }
+.avatar{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: solid;
+  color: white;
+  position: absolute;
+  bottom: 200px;
+  right: 980px;
+  font-size: 18px;
+}
+.avatar:hover
+{
+  background: white;
+  border: 2px solid black;
+  color: black;
+  transition: background 0.9s ease;
+}
+.Mail
+{
+  color: white;
+}
 h2
 {
   color: white;
 }
+
 body{
   background-color: #333;
 }

@@ -6,14 +6,14 @@
    <head>
       <title>Timeline</title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style1.css">
+      <link rel="stylesheet" href="style3.css">
    </head>
    <body>
      <?php include('navbar.php'); ?>
      <br /> <br />
       <?php
          $bdd = new PDO('mysql:host=localhost;dbname=espace_membre', 'root', '');
-         $reqmessage = $bdd->query('SELECT post_timeline, pseudo_timeline, id_post FROM timeline ORDER BY id_post DESC');
+         $reqmessage = $bdd->query('SELECT  id_post, post_timeline, pseudo_timeline, categorie FROM timeline ORDER BY id_post DESC');
          while($post_message = $reqmessage->fetch())
          {
          ?>
@@ -27,7 +27,8 @@
             </div>
             <div class="citationname">
               <?php echo '-' . htmlspecialchars($post_message['pseudo_timeline']) ?>
-            </div><br /> <br /> <br />
+            </div>
+            <br /> <br /> <br />
             </div>
             </div>
             </div>

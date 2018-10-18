@@ -1,7 +1,6 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=espace_membre', 'root', '');
-
 if(isset($_GET['id']) AND $_GET['id'] > 0)
 {
   $getid = intval($_GET['id']);
@@ -13,7 +12,7 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
    <head>
       <title>Profi de <?php echo $userinfo['pseudo']; ?></title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style1.css">
+      <link type="text/css" rel="stylesheet" href="style3.css">
    </head>
    <body>
      <?php include('s_navbar.php'); ?>
@@ -24,14 +23,20 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
          if(!empty($userinfo['avatar']))
          {
          ?>
-         <img src="membres/avatars/<?php echo $userinfo['avatar'];?>" style="width: 200px; border-radius: 50%;">
+         <div><img src="membres/avatars/<?php echo $userinfo['avatar'];?>" class="avatar"></div>
+         <?php
+         }
+         else
+         {
+         ?>
+         <div><img src="membres/avatars/default.png" class="avatar"></div>
          <?php
          }
          ?>
          </br>
-         Mail = <?php echo $userinfo['mail']; ?>
+        <div class="Mail"> Mail = <?php echo $userinfo['mail']; ?> </div>
          <br />
-         Biographie: <br /> <?php echo $userinfo['biographie'] ?><br />
+         Biographie:<?php echo $userinfo['biographie'] ?><br />
          <a href="add_post.php" class="addpost">+</a>
    </body>
 </html>

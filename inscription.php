@@ -8,6 +8,7 @@ if(isset($_POST['forminscription'])) {
    $mdp = sha1($_POST['mdp']);
    $mdp2 = sha1($_POST['mdp2']);
    $bio = htmlspecialchars($_POST['bio']);
+   $avatar = "default.png";
    if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) AND !empty($_POST['bio'])) {
       $pseudolength = strlen($pseudo);
       if($pseudolength <= 255) {
@@ -18,8 +19,8 @@ if(isset($_POST['forminscription'])) {
                $mailexist = $reqmail->rowCount();
                if($mailexist == 0) {
                   if($mdp == $mdp2) {
-                     $insertmbr = $bdd->prepare("INSERT INTO membre(pseudo, mail, motdepasse, biographie) VALUES(?, ?, ?, ?)");
-                     $insertmbr->execute(array($pseudo, $mail, $mdp, $bio));
+                     $insertmbr = $bdd->prepare("INSERT INTO membre(pseudo, mail, motdepasse, biographie, avatar) VALUES(?, ?, ?, ?, ?)");
+                     $insertmbr->execute(array($pseudo, $mail, $mdp, $bio, $avatar));
                      $erreur = "Votre compte a bien été créé ! <a href=\"connexion.php\">Me connecter</a>";
                   } else {
                      $erreur = "Vos mots de passes ne correspondent pas !";
@@ -45,7 +46,7 @@ if(isset($_POST['forminscription'])) {
    <head>
       <title>Inscription</title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style1.css">
+      <link rel="stylesheet" href="style3.css">
    </head>
    <body>
       <div align="center">
