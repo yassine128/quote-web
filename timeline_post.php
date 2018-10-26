@@ -12,7 +12,6 @@ if(isset($_POST['timeline']) AND !empty($_POST['timeline']) AND isset($_FILES['m
    $lastid = $bdd->lastInsertId();
 
 if(isset($_FILES['miniature']) AND !empty($_FILES['miniature']['name'])){
-  $extension = array();
    if(exif_imagetype($_FILES['miniature']['tmp_name']) == 2)
     {
       $chemin = 'miniatures/'.$lastid.'.jpg';

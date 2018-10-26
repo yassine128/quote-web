@@ -6,10 +6,10 @@
    <head>
       <title>Timeline</title>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="style3.css">
+      <link rel="stylesheet" href="style4.css">
    </head>
    <body>
-     <?php include('navbar.php'); ?>
+     <?php include('s_navbar.php'); ?>
      <br /> <br />
       <?php
          $bdd = new PDO('mysql:host=localhost;dbname=espace_membre', 'root', '');
@@ -27,7 +27,8 @@
             </div>
             <div class="citationname">
               <?php echo '-' . htmlspecialchars($post_message['pseudo_timeline']) ?>
-            </div>
+            </div><br />
+            <img src="https://images.emojiterra.com/twitter/v11/512px/1f44f-1f3fd.png" class="like" >
             <br /> <br /> <br />
             </div>
             </div>

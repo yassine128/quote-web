@@ -10,7 +10,7 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
 ?>
 <html>
    <head>
-      <title>Profi de <?php echo $userinfo['pseudo']; ?></title>
+      <title>Profil de <?php echo $userinfo['pseudo']; ?></title>
       <meta charset="utf-8">
       <link type="text/css" rel="stylesheet" href="style3.css">
    </head>

@@ -17,7 +17,6 @@ body {
   overflow: hidden;
   background-color: #2a2929;
 }
-
 .topnav a {
   float: left;
   display: block;
@@ -27,20 +26,16 @@ body {
   text-decoration: none;
   font-size: 17px;
 }
-
 .topnav a:hover {
   color: #b4a007;
 }
-
 .active {
   background-color: #4CAF50;
   color: white;
 }
-
 .topnav .icon {
   display: none;
 }
-
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
@@ -48,7 +43,6 @@ body {
     display: block;
   }
 }
-
 @media screen and (max-width: 600px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
@@ -67,7 +61,7 @@ body {
 <body>
 
 <div class="topnav" id="myTopnav">
-  <a href="timeline.php"/><li><img src="https://images.vexels.com/media/users/3/137401/isolated/preview/00300d00be87848b87d820f2664bc7eb-quora-icon-logo-by-vexels.png"  width="40px" height="40px"/></a></li>
+  <a href="timeline_retour.php"><li><img src="https://images.vexels.com/media/users/3/137401/isolated/preview/00300d00be87848b87d820f2664bc7eb-quora-icon-logo-by-vexels.png"  width="40px" height="40px"/></a></li>
   <a href="editionprofil.php">parametre</a>
   <a href="retour_profile.php"><?php echo $_SESSION['pseudo']; ?></a>
   <a href="deconnexion.php">Log out</a>
@@ -88,10 +82,8 @@ function myFunction() {
 </script>
 <script>
 window.onscroll = function() {myFunction()};
-
 var header = document.getElementById("myTopnav");
 var sticky = header.offsetTop;
-
 function myFunction() {
   if (window.pageYOffset > sticky) {
     header.classList.add("sticky");

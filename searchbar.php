@@ -9,6 +9,7 @@
 
 .topnav .search-container {
   float: right;
+  align: center;
 }
 
 .topnav input[type=text] {
@@ -54,7 +55,7 @@
 <body>
 
 <div class="topnav">
-    <form action="search_post.php">
+    <form method="get" action="search_post.php">
       <input type="text" placeholder="Search.." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
