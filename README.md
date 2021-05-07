@@ -1,1 +1,2 @@
-Take this project like you want I don't really care!
+do what you want with this code idc.
+
